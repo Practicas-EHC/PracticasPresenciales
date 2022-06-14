@@ -15,9 +15,9 @@ public class Database {
             Class.forName(ORACLE_DRIVER);
             connection = DriverManager.getConnection(ORACLE_URL, ORACLE_USR, ORACLE_PSS);
             System.out.println("Conectado a la base de datos!");
-        } catch (ClassNotFoundException cnfe){
+        } catch (ClassNotFoundException CNFE){
             System.out.println("No se ha podido cargar el driver de conexion. Verifique que los drivers estan disponibles.");
-            cnfe.getStackTrace();
+            CNFE.getStackTrace();
         } catch (SQLException sqle){
             System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que el servidor esta conectado y los datos son correctos.");
             sqle.getStackTrace();

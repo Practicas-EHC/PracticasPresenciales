@@ -1,15 +1,17 @@
 package ClothesShop.domain;
 
+import java.util.ArrayList;
+
 public class Clothes {
     private int id;
-    private Styles styles;
-    private Orders orders;
+    private String styles;
+    private String orders;
     private float price;
     private String name;
 
     public Clothes(){}
 
-    public Clothes(Orders orders, Styles styles, float price,String name){
+    public Clothes(String orders, String styles, float price,String name){
         this.orders=orders;
         this.styles=styles;
         this.price=price;
@@ -29,11 +31,14 @@ public class Clothes {
 
     public void setName(String name) {this.name = name;}
 
-    public Styles getStyles() {return styles;}
+    public String getStyles() {return styles;}
 
-    public void setStyles(Styles styles) {this.styles = styles;}
+    public void setStyles(String styles) {this.styles = styles;}
 
-    public Orders getOrders() {return orders;}
+    public String getOrders() {return orders;}
 
-    public void setOrders(Orders orders) {this.orders = orders;}
+    public void setOrders(String  orders) {this.orders = orders;}
+
+
+
 }
