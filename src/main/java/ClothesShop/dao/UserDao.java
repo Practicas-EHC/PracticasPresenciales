@@ -26,29 +26,31 @@ public class UserDao{
         statement.setString(2, users.getPassword());
         statement.setString(3, users.getAdress());
         statement.setString(4, users.getEmail());
-        statement.setString(4, users.getTelephone());
+        statement.setString(5, users.getTelephone());
 
         statement.executeUpdate();
     }
 
-    public Optional<Users> getUsuario (String username, String password) throws SQLException{
-        String sql = "select from USERS WHERE USERNAME = ? AND PASWORD = ?";
+    public Optional<Users> getUser (String username, String password) throws SQLException, UserNotFoundException{
+        if (!existUser(username))
+            throw new UserNotFoundException();
+
+        String sql = "SELECT * FROM USERS WHERE USERNAME = ? AND PASWORD = ?";
         Users users = null;
 
         PreparedStatement st = connection.prepareStatement(sql);
-        st.setString(1,username);
-        st.setString(2,password);
+        st.setString(1, username);
+        st.setString(2, password);
 
         ResultSet res = st.executeQuery();
         while (res.next()){
             users = new Users();
-            users.setUsername(res.getString("username"));
-            users.setPassword(res.getString("pasword"));
-            users.setAdress(res.getString("adress"));
-            users.setEmail(res.getString("email"));
-            users.setTelephone(res.getString("telephone"));
+            users.setUsername(res.getString("USERNAME"));
+            users.setPassword(res.getString("PASWORD"));
+            users.setAdress(res.getString("ADRESS"));
+            users.setEmail(res.getString("EMAIL"));
+            users.setTelephone(res.getString("TELEPHONE"));
         }
-        st.close();
         return Optional.ofNullable(users);
     }
     public boolean delete(String username) throws SQLException, UserNotFoundException {
@@ -63,6 +65,21 @@ public class UserDao{
         return rows == 1;
     }
 
+    public boolean modifyApp(String userName, Users newUser) throws SQLException {
+
+        String sql = "UPDATE USERS SET USERNAME = ?, PASWORD = ?, ADRESS = ?, EMAIL = ?, TELEPHONE = ? WHERE USERNAME = ?";
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, newUser.getUsername());
+        statement.setString(2, newUser.getPassword());
+        statement.setString(3, newUser.getAdress());
+        statement.setString(4, newUser.getEmail());
+        statement.setString(5, newUser.getTelephone());
+        statement.setString(6, userName);
+        int rows = statement.executeUpdate();
+        return rows == 1;
+    }
+
     public Optional<Users> findByUsername(String username) throws SQLException {
         String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
         Users user = null;
@@ -72,11 +89,6 @@ public class UserDao{
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {
             user = new Users();
-            user.setUsername(resultSet.getString("USERNAME"));
-            user.setPassword(resultSet.getString("PASWORD"));
-            user.setAdress(resultSet.getString("ADRESS"));
-            user.setEmail(resultSet.getString("EMAIL"));
-            user.setTelephone(resultSet.getString("TELEPHONE"));
         }
         return Optional.ofNullable(user);
     }

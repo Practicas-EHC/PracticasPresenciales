@@ -2,18 +2,21 @@ package ClothesShop.domain;
 
 import java.util.ArrayList;
 
+// CREAR ENUM PARA COLECCIONES
 public class Clothes {
     private int id;
     private String styles;
+    private String collection;
     private String orders;
     private float price;
     private String name;
 
     public Clothes(){}
 
-    public Clothes(String orders, String styles, float price,String name){
+    public Clothes(String orders, String styles,String collection, float price,String name){
         this.orders=orders;
         this.styles=styles;
+        this.collection=collection;
         this.price=price;
         this.name=name;
     }
@@ -40,5 +43,7 @@ public class Clothes {
     public void setOrders(String  orders) {this.orders = orders;}
 
 
+    public String getCollection() {return collection;}
 
+    public void setCollection(String collection) {this.collection = collection;}
 }

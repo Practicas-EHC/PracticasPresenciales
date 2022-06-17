@@ -1,25 +1,37 @@
 package ClothesShop.domain;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Orders {
     private int id;
     private Date date;
-    private Users users;
+    private String username;
 
-    public Orders(){}
+    private String clothes;
 
-    public Orders(Date date, Users users){
-        this.date=date;
-        this.users=users;
+    public Orders() {
+    }
+
+    public Orders(Date date, String username) {
+        this.date = date;
+        this.username = username;
     }
 
     public Date getDate() {return date;}
 
     public void setDate(Date date) {this.date = date;}
 
-    public Users getUsers() {return users;}
+    public int getId() {return id;}
 
-    public void setUsers(Users users) {this.users = users;}
+    public void setId(int id) {this.id = id;}
+
+    public String getUsername() {return username;}
+
+    public void setUsername(String username) {this.username = username;}
+
+    public String getClothes() {return clothes;}
+
+    public void setClothes(String clothes) {this.clothes = clothes;}
 }
+
+

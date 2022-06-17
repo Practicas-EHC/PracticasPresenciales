@@ -9,11 +9,11 @@
     <version>0.1</version>
     <packaging>war</packaging>
 
-    <name>Tienda_Ropa</name>
+    <name>Tienda</name>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -44,7 +44,7 @@
                         <username>tomcat</username>
                         <password>tomcat</password>
                         <server>tomcat8</server>
-                        <path>/practicas</path>
+                        <path>/practice</path>
                     </configuration>
                 </plugin>
                 <plugin>
